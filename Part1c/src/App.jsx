@@ -42,21 +42,30 @@ const App = () => {
   </>
   }
 
-  return (
-    <div>
-      <Header text="give feedback"/>
-      <Button text="good" onClick={handleGoodReview}/>
-      <Button text="neutral" onClick={handleNeutralReview}/>
-      <Button text="bad" onClick={handleBadReview}/>
-      <Header text="statistics"/>
-      <Statistics text = "good" stat = {good}/>
-      <Statistics text = "neutral" stat = {neutral}/>
-      <Statistics text = "bad" stat = {bad}/>
-      <Statistics text = "all" stat = {good + bad + neutral}/>
-      <Statistics text = "average" stat = {(good - bad)/3}/>
-      <Statistics text = "positive" stat = {good / (good + bad + neutral)}/>
-    </div>
-  )
+  const Base = () => {
+    return <>
+    <Header text="give feedback"/>
+    <Button text="good" onClick={handleGoodReview}/>
+    <Button text="neutral" onClick={handleNeutralReview}/>
+    <Button text="bad" onClick={handleBadReview}/>
+    <Header text="statistics"/>
+    </>
+  }
+  if (good != 0 || bad != 0 || neutral != 0) {
+    return <>
+    <Base/>
+    <Statistics text = "good" stat = {good}/>
+    <Statistics text = "neutral" stat = {neutral}/>
+    <Statistics text = "bad" stat = {bad}/>
+    <Statistics text = "all" stat = {good + bad + neutral}/>
+    <Statistics text = "average" stat = {(good - bad)/3}/>
+    <Statistics text = "positive" stat = {good / (good + bad + neutral)}/>
+    </>
+  }
+  return <>
+  <Base/>
+  <p>No feedback given</p>
+  </>
 }
 
 export default App
