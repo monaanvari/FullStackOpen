@@ -36,9 +36,9 @@ const App = () => {
     setBad(bad + 1)
   }
 
-  const Statistics = (props) => {
+  const StatisticsLine = (props) => {
   return <>
-   <p> {props.text} {props.stat}</p>
+   <p> {props.text} {props.value}</p>
   </>
   }
 
@@ -54,12 +54,12 @@ const App = () => {
   if (good != 0 || bad != 0 || neutral != 0) {
     return <>
     <Base/>
-    <Statistics text = "good" stat = {good}/>
-    <Statistics text = "neutral" stat = {neutral}/>
-    <Statistics text = "bad" stat = {bad}/>
-    <Statistics text = "all" stat = {good + bad + neutral}/>
-    <Statistics text = "average" stat = {(good - bad)/3}/>
-    <Statistics text = "positive" stat = {good / (good + bad + neutral)}/>
+    <StatisticsLine text = "good" value = {good}/>
+    <StatisticsLine text = "neutral" value = {neutral}/>
+    <StatisticsLine text = "bad" value = {bad}/>
+    <StatisticsLine text = "all" value = {good + bad + neutral}/>
+    <StatisticsLine text = "average" value = {(good - bad)/3}/>
+    <StatisticsLine text = "positive" value = {good / (good + bad + neutral)}/>
     </>
   }
   return <>
