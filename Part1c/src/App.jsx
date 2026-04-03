@@ -42,6 +42,15 @@ const App = () => {
   </>
   }
 
+  const StatRow = (props) => {
+    return <>
+    <tr>
+      <td>{props.text}</td>
+      <td>{props.value}</td>
+    </tr>
+    </>
+  }
+
   const Base = () => {
     return <>
     <Header text="give feedback"/>
@@ -54,12 +63,14 @@ const App = () => {
   if (good != 0 || bad != 0 || neutral != 0) {
     return <>
     <Base/>
-    <StatisticsLine text = "good" value = {good}/>
-    <StatisticsLine text = "neutral" value = {neutral}/>
-    <StatisticsLine text = "bad" value = {bad}/>
-    <StatisticsLine text = "all" value = {good + bad + neutral}/>
-    <StatisticsLine text = "average" value = {(good - bad)/3}/>
-    <StatisticsLine text = "positive" value = {good / (good + bad + neutral)}/>
+    <table>
+    <StatRow text = "good" value = {good}/>
+    <StatRow text = "neutral" value = {neutral}/>
+    <StatRow text = "bad" value = {bad}/>
+    <StatRow text = "all" value = {good + bad + neutral}/>
+    <StatRow text = "average" value = {(good - bad)/3}/>
+    <StatRow text = "positive" value = {good / (good + bad + neutral)}/>
+    </table>
     </>
   }
   return <>
