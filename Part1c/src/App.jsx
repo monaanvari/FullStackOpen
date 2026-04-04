@@ -97,15 +97,22 @@ const App = () => {
     'The only way to go fast, is to go well.'
   ]
 
-
-   
+  const votes_initialized = new Array(anecdotes.length).fill(0)
+  
   const [selected, setSelected] = useState(0)
+  const [votes, setVotes] = useState(votes_initialized)
+
+  const recordVote = (selected) => {
+    const copy = [...votes]
+    copy[selected] += 1
+    setVotes(copy)
+  }
 
   const generateRandom = () => {
     setSelected(Math.floor(Math.random() * anecdotes.length))
-}
+  }
 
-  const GenerateButton = (props) => {
+  const Button = (props) => {
     return <>
     <button onClick={props.function}>{props.text}</button>
     </>
@@ -114,7 +121,9 @@ const App = () => {
   return (
     <>
       <p>{anecdotes[selected]}</p>
-      <GenerateButton function = {generateRandom} text = "next anecdote"/>
+      <p>has {votes[selected]} votes</p>
+      <Button function = {generateRandom} text = "next anecdote"/>
+      <Button function = {() => {return recordVote(selected)}} text = "vote"/>
     </>
   )
 }
