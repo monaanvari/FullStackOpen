@@ -101,11 +101,15 @@ const App = () => {
   
   const [selected, setSelected] = useState(0)
   const [votes, setVotes] = useState(votes_initialized)
+  const [mostVoted, setMostVoted] = useState(0)
 
   const recordVote = (selected) => {
     const copy = [...votes]
     copy[selected] += 1
     setVotes(copy)
+    const maxVotes = Math.max(...votes)
+    const maxIndex = votes.indexOf(maxVotes)
+    setMostVoted(maxIndex)
   }
 
   const generateRandom = () => {
@@ -120,10 +124,13 @@ const App = () => {
 
   return (
     <>
+      <h1>Anecdote of the day</h1>
       <p>{anecdotes[selected]}</p>
       <p>has {votes[selected]} votes</p>
       <Button function = {generateRandom} text = "next anecdote"/>
       <Button function = {() => {return recordVote(selected)}} text = "vote"/>
+      <h1>Anecdote with the most votes</h1>
+      <p>{anecdotes[mostVoted]}</p>
     </>
   )
 }
